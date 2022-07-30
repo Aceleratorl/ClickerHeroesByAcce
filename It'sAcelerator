@@ -207,176 +207,18 @@ end
 end)
 
 
-local toggle = AutoBuyEggsSection:Toggle("2M Prism Egg", false,"Toggle", function(Ah)
-  _G.autoHatchEgg = Ah
-while _G.autoHatchEgg == true do
-	local args = {
-    [1] = "PurchaseEgg",
-    [2] = "2M",
-    [3] = true
-}
-
-game:GetService("ReplicatedStorage").Shared.Modules.Utilities.NetworkUtility.Events.UpdatePets:FireServer(unpack(args))
-wait(0.1)
- end
+local Eggs = AutoBuyEggsSection:Dropdown("Eggs", {"Starter","Snow","Iceberg","Toy","Brick","Atlantis","Trident","Eruption","Obsidian","Asteroid","Galaxy","Cyborg","Tech","Ninja","Master"},"","Dropdown", function(cegg)
+    CurrentEgg = cegg
 end)
 
-
-
-local toggle = AutoBuyEggsSection:Toggle("Starter Egg", false,"Toggle", function(Ah)
-  _G.autoHatchEgg = Ah
-while _G.autoHatchEgg == true do
-	local args = {
-    [1] = "PurchaseEgg",
-    [2] = "Starter",
-    [3] = true
-}
-
-game:GetService("ReplicatedStorage").Shared.Modules.Utilities.NetworkUtility.Events.UpdatePets:FireServer(unpack(args))
-wait(0.1)
- end
-end)
-
-
-
-local toggle = AutoBuyEggsSection:Toggle("Iceberg Egg", false,"Toggle", function(Ah)
-  _G.autoHatchEgg = Ah
-  while _G.autoHatchEgg == true do
-    local args = {
-      [1] = "PurchaseEgg",
-      [2] = "Iceberg",
-      [3] = true
-  }
-  
-  game:GetService("ReplicatedStorage").Shared.Modules.Utilities.NetworkUtility.Events.UpdatePets:FireServer(unpack(args))
-  wait(0.1)
-  end
-end)
-
-
-  local toggle = AutoBuyEggsSection:Toggle("Snow Egg", false,"Toggle", function(Ah)
-    _G.autoHatchEgg = Ah
-    while _G.autoHatchEgg == true do
-      local args = {
-        [1] = "PurchaseEgg",
-        [2] = "Snow",
-        [3] = true
-    }
-    
-    game:GetService("ReplicatedStorage").Shared.Modules.Utilities.NetworkUtility.Events.UpdatePets:FireServer(unpack(args))
-    wait(0.1)
+local Toggle = AutoBuyEggsSection:Toggle("Auto Egg", false ,"Toggle", function(ae)
+    getgenv().autoegg = ae
+    while true do
+        if getgenv().autoegg == false then return end
+        game:GetService("ReplicatedStorage").Shared.Modules.Utilities.NetworkUtility.Events.UpdatePets:FireServer("PurchaseEgg", CurrentEgg, true) 
+        wait(0.5)    
     end
-  end)
-
-
-    local toggle = AutoBuyEggsSection:Toggle("Toy Egg", false,"Toggle", function(Ah)   
-      _G.autoHatchEgg = Ah
-      while _G.autoHatchEgg == true do
-        local args = {
-          [1] = "PurchaseEgg",
-          [2] = "Toy",
-          [3] = true
-      }
-      
-      game:GetService("ReplicatedStorage").Shared.Modules.Utilities.NetworkUtility.Events.UpdatePets:FireServer(unpack(args))
-      wait(0.1)
-      end
-    end) 
-
-      local toggle = AutoBuyEggsSection:Toggle("Brick Egg", false,"Toggle", function(Ah)
-        _G.autoHatchEgg = Ah
-while _G.autoHatchEgg == true do
-	local args = {
-    [1] = "PurchaseEgg",
-    [2] = "Brick",
-    [3] = true
-}
-
-game:GetService("ReplicatedStorage").Shared.Modules.Utilities.NetworkUtility.Events.UpdatePets:FireServer(unpack(args))
-wait(0.1)
- end
 end)
-
-local toggle = AutoBuyEggsSection:Toggle("Atlantis Egg", false,"Toggle", function(Ah) 
-  _G.autoHatchEgg = Ah
-  while _G.autoHatchEgg == true do
-    local args = {
-      [1] = "PurchaseEgg",
-      [2] = "Atlantis",
-      [3] = true
-  }
-  
-  game:GetService("ReplicatedStorage").Shared.Modules.Utilities.NetworkUtility.Events.UpdatePets:FireServer(unpack(args))
-  wait(0.1)
-  end
-end)  
-  local toggle = AutoBuyEggsSection:Toggle("Trident Egg", false,"Toggle", function(Ah)
-    _G.autoHatchEgg = Ah
-    while _G.autoHatchEgg == true do
-      local args = {
-        [1] = "PurchaseEgg",
-        [2] = "Trident",
-        [3] = true
-    }
-    
-    game:GetService("ReplicatedStorage").Shared.Modules.Utilities.NetworkUtility.Events.UpdatePets:FireServer(unpack(args))
-    wait(0.1)
-    end
-  end)
-
-      local toggle = AutoBuyEggsSection:Toggle("Eruption Egg", false,"Toggle", function(Ah)
-        _G.autoHatchEgg = Ah
-        while _G.autoHatchEgg == true do
-          local args = {
-            [1] = "PurchaseEgg",
-            [2] = "Eruption",
-            [3] = true
-        }
-        
-        game:GetService("ReplicatedStorage").Shared.Modules.Utilities.NetworkUtility.Events.UpdatePets:FireServer(unpack(args))
-        wait(0.1)
-        end
-      end)
-      local toggle = AutoBuyEggsSection:Toggle("Obsidian Egg", false,"Toggle", function(Ah)
-        _G.autoHatchEgg = Ah
-        while _G.autoHatchEgg == true do
-          local args = {
-            [1] = "PurchaseEgg",
-            [2] = "Obsidian",
-            [3] = true
-        }
-        
-        game:GetService("ReplicatedStorage").Shared.Modules.Utilities.NetworkUtility.Events.UpdatePets:FireServer(unpack(args))
-        wait(0.1)
-        end
-      end)
-        local toggle = AutoBuyEggsSection:Toggle("Asteroid Egg", false,"Toggle", function(Ah)
-          _G.autoHatchEgg = Ah
-          while _G.autoHatchEgg == true do
-            local args = {
-              [1] = "PurchaseEgg",
-              [2] = "Asteroid",
-              [3] = true
-          }
-          
-          game:GetService("ReplicatedStorage").Shared.Modules.Utilities.NetworkUtility.Events.UpdatePets:FireServer(unpack(args))
-          wait(0.1)
-          end
-        end)
-
-        local toggle = AutoBuyEggsSection:Toggle("Galaxy Egg", false,"Toggle", function(Ah)
-          _G.autoHatchEgg = Ah
-          while _G.autoHatchEgg == true do
-            local args = {
-              [1] = "PurchaseEgg",
-              [2] = "Galaxy",
-              [3] = true
-          }
-          
-          game:GetService("ReplicatedStorage").Shared.Modules.Utilities.NetworkUtility.Events.UpdatePets:FireServer(unpack(args))
-          wait(0.1)
-          end
-        end)
 
 local label = AutoBuyEggsSection:Label("inventory")
 

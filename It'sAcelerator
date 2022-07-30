@@ -28,182 +28,36 @@ local AutoClick = AutoClickSection:Toggle("Auto Click", false,"Toggle", function
 end)
 
 
-local AutoUpgrades = AutoUpgradesSection:Toggle("More Rebirths Auto Upgrade", false,"Toggle", function(Ur)
-    _G.autobuyrebirthb = Ur
-    while _G.autobuyrebirthb == true do
-    game:GetService("ReplicatedStorage").Shared.Modules.Utilities.NetworkUtility.Events.UpdateGemUpgrades:FireServer("More Rebirths","BuySingle","Ninja")
-    wait(0.1)
+local Upgrades = AutoUpgradesSection:Dropdown("Upgrades", {"Tap Speed","More Rebirths","Faster Speed","More Taps","More Gems","Pet Storage"},"","Dropdown", function(up)
+    CurrentUp = up
+end)
+
+local ToggleAutoUpgrades = AutoUpgradesSection:Toggle("Auto Upgrade from Dropdown", false ,"Toggle", function(autoupf)
+    getgenv().autoup = autoupf
+    while true do
+        if getgenv().autoup == false then return end
+        game:GetService("ReplicatedStorage").Shared.Modules.Utilities.NetworkUtility.Events.UpdateGemUpgrades:FireServer(CurrentUp,"BuySingle","Desert")
+        wait(0.3)    
     end
 end)
 
 
-
-local AutoUpgrades = AutoUpgradesSection:Toggle("Faster Speed Auto Upgrade", false,"Toggle", function(Ur)
-  _G.autobuyrebirthb = Ur
-  while _G.autobuyrebirthb == true do
-  game:GetService("ReplicatedStorage").Shared.Modules.Utilities.NetworkUtility.Events.UpdateGemUpgrades:FireServer("Faster Speed","BuySingle","Ninja")
-  wait(0.1)
-  end
+local RebirthList = AutoRebirthSection:Dropdown("Rebirths", {"1","5","10","25","50","100","1k","5k","10k","25k","50k","100k","500k","1m","5m","25m","100m","500m","2.5b","10b","25b","50b","125b","250b","500b","1t","2.5t","5t","10t","25t","50t","100t","250t","500t","750t","1qd","2qd","5qd","7qd"},"","Dropdown", function(p)
+    local allrebirths = {"1","5","10","25","50","100","1k","5k","10k","25k","50k","100k","500k","1m","5m","25m","100m","500m","2.5b","10b","25b","50b","125b","250b","500b","1t","2.5t","5t","10t","25t","50t","100t","250t","500t","750t","1qd","2qd","5qd","7qd"}
+    for i, v in pairs(allrebirths) do
+        if v == p then
+            RebirthCout = i
+        end
+    end
 end)
 
-
-local AutoUpgrades = AutoUpgradesSection:Toggle("Tap Speed Auto Upgrade", false,"Toggle", function(Ur)
-  _G.autobuyrebirthb = Ur
-  while _G.autobuyrebirthb == true do
-  game:GetService("ReplicatedStorage").Shared.Modules.Utilities.NetworkUtility.Events.UpdateGemUpgrades:FireServer("Tap Speed","BuySingle","Ninja")
-  wait(0.1)
-  end
-end)
-
-local AutoUpgrades = AutoUpgradesSection:Toggle("More Gems Auto Upgrade", false,"Toggle", function(Ur)
-  _G.autobuyrebirthb = Ur
-  while _G.autobuyrebirthb == true do
-  game:GetService("ReplicatedStorage").Shared.Modules.Utilities.NetworkUtility.Events.UpdateGemUpgrades:FireServer("More Gems","BuySingle","Ninja")
-  wait(0.1)
-  end
-end)
-
-local AutoUpgrades = AutoUpgradesSection:Toggle("More Taps Auto Upgrade", false,"Toggle", function(Ur)
-  _G.autobuyrebirthb = Ur
-  while _G.autobuyrebirthb == true do
-  game:GetService("ReplicatedStorage").Shared.Modules.Utilities.NetworkUtility.Events.UpdateGemUpgrades:FireServer("More Taps","BuySingle","Ninja")
-  wait(0.1)
-  end
-end)
-
-
-local AutoUpgrades = AutoUpgradesSection:Toggle("Pet Storage Auto Upgrade", false,"Toggle", function(Ur)
-  _G.autobuyrebirthb = Ur
-  while _G.autobuyrebirthb == true do
-  game:GetService("ReplicatedStorage").Shared.Modules.Utilities.NetworkUtility.Events.UpdateGemUpgrades:FireServer("Pet Storage","BuySingle","Ninja")
-  wait(0.1)
-  end
-end)
-
-
-local toggle = AutoRebirthSection:Toggle("Auto Rebirth 100", false,"Toggle", function(Ar)
-  _G.autoRebirth = Ar
-while _G.autoRebirth == true do
-  local args = {
-    [1] = "BuyRebirths",
-    [2] = 6
-  }
-  
-  game:GetService("ReplicatedStorage").Shared.Modules.Utilities.NetworkUtility.Events.UpdateRebirths:FireServer(unpack(args))
-  wait(0.1)
-end
-end)
-
-
-
-local toggle = AutoRebirthSection:Toggle("Auto Rebirth 1000", false,"Toggle", function(Ar)
-  _G.autoRebirth = Ar
-while _G.autoRebirth == true do
-  local args = {
-    [1] = "BuyRebirths",
-    [2] = 7
-  }
-  
-  game:GetService("ReplicatedStorage").Shared.Modules.Utilities.NetworkUtility.Events.UpdateRebirths:FireServer(unpack(args))
-  wait(0.1)
-end
-end)
-
-local toggle = AutoRebirthSection:Toggle("Auto Rebirth 10k ", false,"Toggle", function(Ar)
-  _G.autoRebirth = Ar
-while _G.autoRebirth == true do
-  local args = {
-    [1] = "BuyRebirths",
-    [2] = 9
-  }
-  
-  game:GetService("ReplicatedStorage").Shared.Modules.Utilities.NetworkUtility.Events.UpdateRebirths:FireServer(unpack(args))
-  wait(0.1)
-end
-end)
-
-local toggle = AutoRebirthSection:Toggle("Auto Rebirth 100k", false,"Toggle", function(Ar)
-  _G.autoRebirth = Ar
-while _G.autoRebirth == true do
-  local args = {
-    [1] = "BuyRebirths",
-    [2] = 12
-  }
-  
-  game:GetService("ReplicatedStorage").Shared.Modules.Utilities.NetworkUtility.Events.UpdateRebirths:FireServer(unpack(args))
-  wait(0.1)
-end
-end)
-
-local toggle = AutoRebirthSection:Toggle("Auto Rebirth 1m", false,"Toggle", function(Ar)
-  _G.autoRebirth = Ar
-while _G.autoRebirth == true do
-  local args = {
-    [1] = "BuyRebirths",
-    [2] = 14
-  }
-  
-  game:GetService("ReplicatedStorage").Shared.Modules.Utilities.NetworkUtility.Events.UpdateRebirths:FireServer(unpack(args))
-  wait(0.1)
-end
-end)
-
-local toggle = AutoRebirthSection:Toggle("Auto Rebirth 100m", false,"Toggle", function(Ar)
-  _G.autoRebirth = Ar
-while _G.autoRebirth == true do
-  local args = {
-    [1] = "BuyRebirths",
-    [2] = 17
-  }
-  
-  game:GetService("ReplicatedStorage").Shared.Modules.Utilities.NetworkUtility.Events.UpdateRebirths:FireServer(unpack(args))
-  wait(0.1)
-end
-end)
-
-
-
-local toggle = AutoRebirthSection:Toggle("Auto Rebirth 10B ", false,"Toggle", function(Ar)
-  _G.autoRebirth = Ar
-while _G.autoRebirth == true do
-  local args = {
-    [1] = "BuyRebirths",
-    [2] = 20
-  }
-  
-  game:GetService("ReplicatedStorage").Shared.Modules.Utilities.NetworkUtility.Events.UpdateRebirths:FireServer(unpack(args))
-  wait(0.1)
-end
-end)
-
-
-
-local toggle = AutoRebirthSection:Toggle("Auto Rebirth 125B ", false,"Toggle", function(Ar)
-  _G.autoRebirth = Ar
-while _G.autoRebirth == true do
-  local args = {
-    [1] = "BuyRebirths",
-    [2] = 23
-  }
-  
-  game:GetService("ReplicatedStorage").Shared.Modules.Utilities.NetworkUtility.Events.UpdateRebirths:FireServer(unpack(args))
-  wait(0.1)
-end
-end)
-
-
-
-local toggle = AutoRebirthSection:Toggle("Auto Rebirth 1T", false,"Toggle", function(Ar)
-  _G.autoRebirth = Ar
-while _G.autoRebirth == true do
-  local args = {
-    [1] = "BuyRebirths",
-    [2] = 26
-  }
-  
-  game:GetService("ReplicatedStorage").Shared.Modules.Utilities.NetworkUtility.Events.UpdateRebirths:FireServer(unpack(args))
-  wait(0.1)
-end
+local ToggleAutoRebirth = AutoRebirthSection:Toggle("Auto Rebirth", false ,"Toggle", function(ar)
+    getgenv().autorebirth = ar
+    while true do
+        if getgenv().autorebirth == false then return end
+        game:GetService("ReplicatedStorage").Shared.Modules.Utilities.NetworkUtility.Events.UpdateRebirths:FireServer("BuyRebirths", RebirthCout)
+        wait(0.5)    
+    end
 end)
 
 
@@ -246,17 +100,3 @@ wait(0.1)
 end
 end)
 
-local toggle = AutoRebirthSection:Toggle("EquipBestPets", false,"Toggle", function(ACC)
-	_G.autocrystal = ACC
-while _G.autocrystal == true do
-	local args = {
-    [1] = "Tap Capacity",
-    [2] = "DamageCrystal",
-    [3] = "Ninja",
-    [4] = "1"
-}
-
-game:GetService("ReplicatedStorage").Shared.Modules.Utilities.NetworkUtility.Events.UpdateGemUpgrades:FireServer(unpack(args))
-wait(0.1)
-end
-end)

@@ -19,12 +19,17 @@ local MiscSection = Misc:Section("Misc") --section
 local AutoUpgradesSection = AutoBuyUpgrades:Section("AutoUpgrades") --section
 
 
-local AutoClick = AutoClickSection:Toggle("Auto Click", false,"Toggle", function(Ac)
-  _G.autoclick = Ac
-  while _G.autoclick == true do
-    game:GetService("ReplicatedStorage").Shared.Modules.Utilities.NetworkUtility.Events.UpdateGemUpgrades:FireServer("Tap Capacity", "HandleTapActivation" ,"Home")    
-    wait(0.1)
-  end
+local WorldList = AutoClickSection:Dropdown("World Clicks Boost (must have)", {"Home","Winter World","Toy World","Atlantis World","Magma World","Space World","Tech World","Ninja World","Desert World"},"Home","Dropdown", function(wor)
+    CurrentWorld = wor
+end)
+
+local ToggleAutoTap = AutoClickSection:Toggle("Auto Tap", false ,"Toggle", function(at)
+    getgenv().autotap = at
+    while true do
+        if getgenv().autotap == false then return end
+        game:GetService("ReplicatedStorage").Shared.Modules.Utilities.NetworkUtility.Events.UpdateGemUpgrades:FireServer("Tap Capacity", "HandleTapActivation", CurrentWorld)   
+        wait()    
+    end
 end)
 
 
